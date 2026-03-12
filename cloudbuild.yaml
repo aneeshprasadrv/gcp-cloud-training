@@ -32,5 +32,5 @@ steps:
 images:
 - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
 
-options:
-  logging: CLOUD_LOGGING_ONLY
+#options:
+#  logging: CLOUD_LOGGING_ONLY
