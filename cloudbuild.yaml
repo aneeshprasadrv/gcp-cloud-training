@@ -1,0 +1,33 @@
+steps:
+
+# Build Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '-t'
+  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
+  - '.'
+
+# Push image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'push'
+  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
+
+# Deploy to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'gcp-cloud-training-service'
+  - '--image'
+  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
+  - '--region'
+  - 'us-central1'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'
+
+images:
+- 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
