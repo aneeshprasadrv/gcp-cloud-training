@@ -24,7 +24,7 @@ steps:
   - '--image'
   - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
   - '--region'
-  - 'us-central1'
+  - 'asia-south1'
   - '--platform'
   - 'managed'
   - '--allow-unauthenticated'
