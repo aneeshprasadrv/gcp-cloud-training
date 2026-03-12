@@ -5,14 +5,14 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
+  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo/django-app:$COMMIT_SHA'
   - '.'
 
 # Push image to Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'push'
-  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
+  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo/django-app:$COMMIT_SHA'
 
 # Deploy to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -22,7 +22,7 @@ steps:
   - 'deploy'
   - 'gcp-cloud-training-service'
   - '--image'
-  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
+  - 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo/django-app:$COMMIT_SHA'
   - '--region'
   - 'asia-south1'
   - '--platform'
@@ -30,7 +30,7 @@ steps:
   - '--allow-unauthenticated'
 
 images:
-- 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo:$COMMIT_SHA'
+- 'asia-south1-docker.pkg.dev/cloud-project-489906/myrepo/django-app:$COMMIT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
