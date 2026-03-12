@@ -20,6 +20,6 @@ RUN /app/venv1/bin/pip install -r requirements.txt
 # Set PATH to use virtualenv's python/pip
 ENV PATH="/app/venv1/bin:$PATH"
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
